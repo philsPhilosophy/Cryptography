@@ -70,13 +70,17 @@
         <!-- Section for A = 5^a mod 1736797 -->
         <h2>Step 1: Alice and Bob Choose a Secret Number.</h2>
         <p>Alice chooses a secret number from 2- 1000. Do not share this secret number with anyone, write it down, put the secret 
-          number in the textbox and click Mix. Alice write down the mixed number. Bob repeats the same process. He chooses a secret 
+          number in the textbox and click Mix. Alice write down the mixed number. Refresh the webpage so the secret key cannot be seen by Bob or Eve. 
+        </p>
+        <p>
+          Bob repeats the same process. He chooses a secret 
           number, writes it down, and enters it into the textbox and clicks Mix, Bob writes the mixed number down.
          </p>
+       
         <input type="text" id="inputA">
         <button onclick="calculateModExp()">Mix</button>
         <br><br>
-        <p>Result \(A = 5^a \mod 1736797\):</p>
+        <p>Mixed Number</p>
         <input type="text" id="resultBoxA" readonly>
         <br><br>
 
