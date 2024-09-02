@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Asymmetric Cryptography</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      body {
+        background-color: hotpink;
+      }
+
+      p {
+        font-size: 1.2em;
+      }
+    </style>
+
+    <script>
+      // Function to compute (base^exponent) mod modulus efficiently
+      function modExp(base, exponent, modulus) {
+        if (modulus === 1) return 0;
+        let result = 1;
+        base = base % modulus;
+        while (exponent > 0) {
+          if (exponent % 2 === 1) { // If exponent is odd, multiply base with result
+            result = (result * base) % modulus;
+          }
+          exponent = Math.floor(exponent / 2); // Divide the exponent by 2
+          base = (base * base) % modulus; // Square the base
+        }
+        return result;
+      }
+
+      function calculateModExp() {
+        const a = parseInt(document.getElementById('inputA').value);
+        const p = 1736797;
+        const base = 5;
+        
+        if (isNaN(a) || a <= 0) {
+          alert("Please enter a valid positive integer.");
+          return;
+        }
+
+        const A = modExp(base, a, p);
+        document.getElementById('resultBox').value = A;
+      }
+    </script>
+  </head>
+
+  <body>
+    <main class="content">
+      <div id="about-us">
+        <h1>Introduction To Asymmetric Cryptography:</h1>
+
+        <h2>Step 1:</h2>
+        <p>Enter a positive integer <em>a</em>:</p>
+        <input type="text" id="inputA">
+        <button onclick="calculateModExp()">Mix</button>
+        <br><br>
+        <p>Result \(A = 5^a \mod 1736797\):</p>
+        <input type="text" id="resultBox" readonly>
+      </div>
+    </main>
+  </body>
+</html>
