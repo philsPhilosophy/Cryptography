@@ -30,6 +30,7 @@
         return result;
       }
 
+      // Calculate A = 5^a mod 1736797
       function calculateModExp() {
         const a = parseInt(document.getElementById('inputA').value);
         const p = 1736797;
@@ -41,7 +42,22 @@
         }
 
         const A = modExp(base, a, p);
-        document.getElementById('resultBox').value = A;
+        document.getElementById('resultBoxA').value = A;
+      }
+
+      // Calculate B^S mod 1736797
+      function calculateModExpForInputs() {
+        const S = parseInt(document.getElementById('inputS').value);
+        const B = parseInt(document.getElementById('inputB').value);
+        const p = 1736797;
+        
+        if (isNaN(S) || S < 0 || isNaN(B) || B <= 0) {
+          alert("Please enter valid positive integers for both S and B.");
+          return;
+        }
+
+        const result = modExp(B, S, p);
+        document.getElementById('resultBoxB').value = result;
       }
     </script>
   </head>
@@ -51,13 +67,28 @@
       <div id="about-us">
         <h1>Introduction To Asymmetric Cryptography:</h1>
 
+        <!-- Section for A = 5^a mod 1736797 -->
         <h2>Step 1:</h2>
         <p>Enter a positive integer <em>a</em>:</p>
         <input type="text" id="inputA">
         <button onclick="calculateModExp()">Mix</button>
         <br><br>
         <p>Result \(A = 5^a \mod 1736797\):</p>
-        <input type="text" id="resultBox" readonly>
+        <input type="text" id="resultBoxA" readonly>
+        <br><br>
+
+        <!-- Section for B^S mod 1736797 -->
+        <h2>Step 2:</h2>
+        <p>Enter a positive integer <em>S</em>:</p>
+        <input type="text" id="inputS">
+        <br><br>
+        <p>Enter a positive integer <em>B</em>:</p>
+        <input type="text" id="inputB">
+        <br><br>
+        <button onclick="calculateModExpForInputs()">Calculate</button>
+        <br><br>
+        <p>Result \(B^S \mod 1736797\):</p>
+        <input type="text" id="resultBoxB" readonly>
       </div>
     </main>
   </body>
