@@ -68,7 +68,7 @@
         <h1>Introduction To Asymmetric Cryptography:</h1>
 
         <!-- Section for A = 5^a mod 1736797 -->
-        <h2><b>Step 1:</b> Alice Chooses a Secret Number a and Computes: <span>5<sup>a</sup>mod(1736797)</span></h2>
+        <h2><b>Step 1:</b> Alice and Bob each Choose a Secret Number and Compute: <span>5<sup>a</sup>mod(1736797)</span></h2>
         
         <p>Alice, choose a secret number from 2- 1736797. Do not share this secret number with anyone, write it down, put the secret 
           number in the textbox and click Mix, this will compute <span>5<sup>a</sup>mod(1736797)</span>. Alice write down the mixed number. 
@@ -76,7 +76,7 @@
         </p>
         <p>
           Bob, repeat the same process as Alice. Choose a secret 
-          number, writes it down, and enter it into the textbox and click Mix, Bob writes the mixed number down. <b>And again, Refresh the webpage
+          number, writes it down, and enter it into the textbox and click Mix, Bob write the mixed number down. <b>And again, Refresh the webpage
           so that the secret key cannot be seen by Eve!.</b>
          </p>
        
@@ -88,11 +88,11 @@
         <br><br>
 
         <!-- Section for B^S mod 1736797 -->
-        <h2>Step 2:</h2>
-        <p>Enter a positive integer <em>S</em>:</p>
+        <h2>Step 2: Alice & Bob Exchange Mixed Numbers and Compute a Shared Secret Key</h2>
+        <p>Enter Here Your Secret Number<em>S</em>:</p>
         <input type="text" id="inputS">
         <br><br>
-        <p>Enter a positive integer <em>B</em>:</p>
+        <p>Enter the Mixed Number You Recieved from Your Partner<em>B</em>:</p>
         <input type="text" id="inputB">
         <br><br>
         <button onclick="calculateModExpForInputs()">Calculate</button>
