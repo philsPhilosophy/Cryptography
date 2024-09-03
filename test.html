@@ -12,6 +12,15 @@
       p {
         font-size: 1.2em;
       }
+
+      .encryption-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .encryption-container div {
+        margin-right: 20px;
+      }
     </style>
 
     <script>
@@ -59,6 +68,24 @@
         const result = modExp(B, S, p);
         document.getElementById('resultBoxB').value = result;
       }
+
+      // Simple XOR encryption using the secret key
+      function encryptText() {
+        const key = parseInt(document.getElementById('encryptionKey').value);
+        const plaintext = document.getElementById('plaintextInput').value;
+
+        if (isNaN(key) || key <= 0 || !plaintext) {
+          alert("Please enter a valid secret key and some text to encrypt.");
+          return;
+        }
+
+        let encryptedText = '';
+        for (let i = 0; i < plaintext.length; i++) {
+          encryptedText += String.fromCharCode(plaintext.charCodeAt(i) ^ key);
+        }
+
+        document.getElementById('encryptedText').value = encryptedText;
+      }
     </script>
   </head>
 
@@ -68,17 +95,17 @@
         <h1>Introduction To Asymmetric Cryptography:</h1>
 
         <!-- Section for A = 5^a mod 1736797 -->
-        <h2><b>Step 1:</b> Alice and Bob each Choose a Secret Number and Compute: <span>5<sup>a</sup>mod(1736797)</span></h2>
+        <h2><b>Step 1:</b> Alice and Bob each Choose a Secret Number and Compute: <span>5<sup>a</sup> mod(1736797)</span></h2>
         
         <p>Alice, choose a secret number from 2- 1736797. Do not share this secret number with anyone, write it down, put the secret 
-          number in the textbox and click Mix, this will compute <span>5<sup>a</sup>mod(1736797)</span>. Alice write down the mixed number. 
+          number in the textbox and click Mix, this will compute <span>5<sup>a</sup> mod(1736797)</span>. Alice, write down the mixed number. 
           Refresh the webpage so the secret key cannot be seen by Bob or Eve. 
         </p>
         <p>
           Bob, repeat the same process as Alice. Choose a secret 
-          number, writes it down, and enter it into the textbox and click Mix, Bob write the mixed number down. <b>And again, Refresh the webpage
-          so that the secret key cannot be seen by Eve!.</b>
-         </p>
+          number, write it down, and enter it into the textbox and click Mix. Bob, write the mixed number down. <b>And again, refresh the webpage
+          so that the secret key cannot be seen by Eve!</b>
+        </p>
        
         <input type="text" id="inputA">
         <button onclick="calculateModExp()">Mix</button>
@@ -89,18 +116,36 @@
 
         <!-- Section for B^S mod 1736797 -->
         <h2>Step 2: Alice & Bob Exchange Mixed Numbers and Compute a Shared Secret Key</h2>
-        <p>Alice should show or tell Bob the mixed number she recieved from step 1, and Bob should do the same. When they do be sure that Eve is able 
+        <p>Alice should show or tell Bob the mixed number she received from step 1, and Bob should do the same. When they do, be sure that Eve is able 
           to see and hear the mixed numbers from both. Now Alice and Bob will compute a shared secret key.
         <p>Enter Here Your Secret Number</p>
         <input type="text" id="inputS">
         <br><br>
-        <p>Enter the Mixed Number You Recieved from Your Partner</p>
+        <p>Enter the Mixed Number You Received from Your Partner</p>
         <input type="text" id="inputB">
         <br><br>
         <button onclick="calculateModExpForInputs()">Calculate Shared Secret Key Between Alice and Bob.</button>
         <br><br>
         <p>Shared Key Between Alice and Bob:</p>
         <input type="text" id="resultBoxB" readonly>
+        <br><br>
+
+        <!-- Section for encryption using the shared secret key -->
+        <h2>Step 3: Encrypt a Message Using the Shared Secret Key</h2>
+        <div class="encryption-container">
+          <div>
+            <p>Enter the Shared Secret Key:</p>
+            <input type="text" id="encryptionKey">
+            <p>Enter the Text to Encrypt:</p>
+            <input type="text" id="plaintextInput">
+          </div>
+          <div>
+            <p>Encrypted Text:</p>
+            <input type="text" id="encryptedText" readonly>
+            <br><br>
+            <button onclick="encryptText()">Encrypt Text</button>
+          </div>
+        </div>
       </div>
     </main>
   </body>
