@@ -89,15 +89,17 @@
 
         <!-- Section for B^S mod 1736797 -->
         <h2>Step 2: Alice & Bob Exchange Mixed Numbers and Compute a Shared Secret Key</h2>
-        <p>Enter Here Your Secret Number<em>S</em>:</p>
+        <p>Alice should show or tell Bob the mixed number she recieved from step 1, and Bob should do the same. When they do be sure that Eve is able 
+          to see and hear the mixed numbers from both. Now Alice and Bob will compute a shared secret key.
+        <p>Enter Here Your Secret Number</p>
         <input type="text" id="inputS">
         <br><br>
-        <p>Enter the Mixed Number You Recieved from Your Partner<em>B</em>:</p>
+        <p>Enter the Mixed Number You Recieved from Your Partner</p>
         <input type="text" id="inputB">
         <br><br>
-        <button onclick="calculateModExpForInputs()">Calculate</button>
+        <button onclick="calculateModExpForInputs()">Calculate Shared Secret Key Between Alice and Bob.</button>
         <br><br>
-        <p>Result \(B^S \mod 1736797\):</p>
+        <p>Shared Key Between Alice and Bob:</p>
         <input type="text" id="resultBoxB" readonly>
       </div>
     </main>
