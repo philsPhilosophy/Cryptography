@@ -69,7 +69,7 @@
         document.getElementById('resultBoxB').value = result;
       }
 
-      // Simple XOR encryption using the secret key
+      // Encryption function that converts text to numeric string using XOR
       function encryptText() {
         const key = parseInt(document.getElementById('encryptionKey').value);
         const plaintext = document.getElementById('plaintextInput').value;
@@ -81,13 +81,14 @@
 
         let encryptedText = '';
         for (let i = 0; i < plaintext.length; i++) {
-          encryptedText += String.fromCharCode(plaintext.charCodeAt(i) ^ key);
+          let encryptedChar = plaintext.charCodeAt(i) ^ key; // XOR operation
+          encryptedText += encryptedChar.toString() + ' '; // Convert to string and add space as a separator
         }
 
-        document.getElementById('encryptedText').value = encryptedText;
+        document.getElementById('encryptedText').value = encryptedText.trim(); // Remove trailing space
       }
 
-      // Simple XOR decryption using the secret key
+      // Decryption function that converts numeric string back to text using XOR
       function decryptText() {
         const key = parseInt(document.getElementById('decryptionKey').value);
         const encryptedText = document.getElementById('encryptedInput').value;
@@ -98,8 +99,11 @@
         }
 
         let decryptedText = '';
-        for (let i = 0; i < encryptedText.length; i++) {
-          decryptedText += String.fromCharCode(encryptedText.charCodeAt(i) ^ key);
+        const encryptedNumbers = encryptedText.split(' '); // Split the string by spaces
+
+        for (let i = 0; i < encryptedNumbers.length; i++) {
+          let decryptedChar = String.fromCharCode(parseInt(encryptedNumbers[i]) ^ key); // XOR operation
+          decryptedText += decryptedChar; // Convert back to character
         }
 
         document.getElementById('decryptedText').value = decryptedText;
@@ -158,7 +162,7 @@
             <input type="text" id="plaintextInput">
           </div>
           <div>
-            <p>Encrypted Text:</p>
+            <p>Encrypted Text (Numeric):</p>
             <input type="text" id="encryptedText" readonly>
             <br><br>
             <button onclick="encryptText()">Encrypt Text</button>
@@ -171,7 +175,7 @@
           <div>
             <p>Enter the Shared Secret Key:</p>
             <input type="text" id="decryptionKey">
-            <p>Enter the Encrypted Text:</p>
+            <p>Enter the Encrypted Text (Numeric):</p>
             <input type="text" id="encryptedInput">
           </div>
           <div>
